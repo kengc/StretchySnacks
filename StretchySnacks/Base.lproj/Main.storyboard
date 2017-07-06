@@ -43,7 +43,7 @@
                                 <rect key="frame" x="0.0" y="60" width="375" height="607"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NzT-lG-I04">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="NzT-lG-I04">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NzT-lG-I04" id="yRK-ai-dmt">
@@ -61,6 +61,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="oKz-Be-kya"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="yZc-Ik-pib"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,11 +82,12 @@
                         <outlet property="navBarHeightContraint" destination="KnT-au-jJv" id="0ey-k4-thz"/>
                         <outlet property="naveBarView" destination="4Xj-M6-Mvk" id="hen-pe-YUL"/>
                         <outlet property="plusButton" destination="TL8-Kk-vGy" id="b2f-82-IWr"/>
+                        <outlet property="tableView" destination="zk7-41-rgG" id="gOA-2S-GcH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-106.40000000000001" y="88.605697151424295"/>
+            <point key="canvasLocation" x="-476" y="29"/>
         </scene>
     </scenes>
 </document>
