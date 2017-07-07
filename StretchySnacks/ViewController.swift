@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var tableView: UITableView!
     @IBOutlet var naveBarView: UIView!
     
+    @IBOutlet var centerY: NSLayoutConstraint!
+    
     @IBOutlet var plusButton: UIButton!
     
     @IBOutlet var navBarHeightContraint: NSLayoutConstraint!
@@ -24,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var itemArray = [String]()
     
-    var navBarLabel = UILabel()
+    @IBInspectable var navBarLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +100,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         navBarLabel.isHidden = false
         navBarLabel.alpha = 1.0
         navBarLabel.translatesAutoresizingMaskIntoConstraints = false;
-        stackView.addSubview(navBarLabel)
+        //stackView.addSubview(navBarLabel)
      
         
         stackView.addArrangedSubview(oreoButton)
@@ -108,6 +110,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         stackView.addArrangedSubview(ramenButton)
         
         self.naveBarView.addSubview(stackView)
+        self.naveBarView.addSubview(navBarLabel)
         
        
         stackView.centerXAnchor.constraint(equalTo: naveBarView.centerXAnchor).isActive = true
@@ -162,6 +165,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.navBarHeightContraint.constant = 200
             stackView.isHidden = false
             
+            navBarLabel.text = "add a SNACK"
+            //navBarLabel.centerYAnchor.constraint(equalTo: naveBarView.centerYAnchor, constant: 200.0).isActive = true
+            
             UIView.animate(withDuration: 1.0,
                            delay: 0.0,
                            usingSpringWithDamping: 0.3,
@@ -194,7 +200,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print(self.plusButton.transform)
         
         if(self.plusButton.transform.a == 1.0){
-            
+  
             //self.plusButton.transform = CGAffineTransform(rotationAngle: 2.0)
                 
             //print(self.plusButton.transform)
@@ -236,6 +242,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 (value: Bool) in
             })
             stackView.isHidden = true
+            navBarLabel.text = "SNACKS"
         }
     }
     

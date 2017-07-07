@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,17 +48,21 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NzT-lG-I04" id="yRK-ai-dmt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSA-ie-kZe">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSA-ie-kZe">
                                                     <rect key="frame" x="24" y="12" width="308" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SSA-ie-kZe" secondAttribute="trailing" constant="35" id="7xN-j1-Pp1"/>
+                                                <constraint firstItem="SSA-ie-kZe" firstAttribute="leading" secondItem="yRK-ai-dmt" secondAttribute="leadingMargin" constant="16" id="H5P-cT-HHe"/>
+                                                <constraint firstItem="SSA-ie-kZe" firstAttribute="centerY" secondItem="yRK-ai-dmt" secondAttribute="centerY" id="cBj-pE-SaX"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -69,9 +74,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="zk7-41-rgG" firstAttribute="top" secondItem="4Xj-M6-Mvk" secondAttribute="bottom" id="0zi-7T-Zxd"/>
                             <constraint firstItem="4Xj-M6-Mvk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RFg-zF-TWh"/>
                             <constraint firstItem="zk7-41-rgG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Tuk-SG-j0L"/>
-                            <constraint firstItem="zk7-41-rgG" firstAttribute="top" secondItem="4Xj-M6-Mvk" secondAttribute="bottom" id="UmI-Vo-T4Y"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zk7-41-rgG" secondAttribute="bottom" id="hwI-Go-1Da"/>
                             <constraint firstAttribute="trailing" secondItem="zk7-41-rgG" secondAttribute="trailing" id="mOZ-0g-POP"/>
                             <constraint firstAttribute="trailing" secondItem="4Xj-M6-Mvk" secondAttribute="trailing" id="ud7-jW-eBT"/>
