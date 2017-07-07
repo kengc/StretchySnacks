@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    //@IBOutlet var snacksLabel: UILabel!
    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var naveBarView: UIView!
@@ -19,13 +20,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var navBarHeightContraint: NSLayoutConstraint!
     
     var stackView: UIStackView = UIStackView()
+    var labelHeight : NSLayoutConstraint!
     
     var itemArray = [String]()
+    
+    var navBarLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //hack to get SNACKS showing doesnt really work because it's stiff and doesn't bounce with the animation
+//            snacksLabel.text = "SNACKS"
+//            snacksLabel.isHidden = true
             setupNavBar()
            }
 
@@ -37,6 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //stackView.isHidden = true
         
          //add 5 images, as buttons so i can add to the table, to stackview
+        
         
         let oreoButton: UIButton = UIButton()
         oreoButton.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
@@ -53,19 +61,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         pizzaPocketButton.addTarget(self, action: #selector(self.addToTable), for: .touchUpInside)
         pizzaPocketButton.setImage(UIImage(named: "pizza_pockets"), for: [])
  
-        let popsicleButton: UIButton = UIButton()
-        popsicleButton.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
-        popsicleButton.widthAnchor.constraint(equalToConstant: self.view.frame.size.width/5.0).isActive = true
-        popsicleButton.tag = 3
-        popsicleButton.addTarget(self, action: #selector(self.addToTable), for: .touchUpInside)
-        popsicleButton.setImage(UIImage(named: "popsicle"), for: [])
         
         let popTartButton: UIButton = UIButton()
         popTartButton.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
         popTartButton.widthAnchor.constraint(equalToConstant: self.view.frame.size.width/5.0).isActive = true
-        popTartButton.tag = 4
+        popTartButton.tag = 3
         popTartButton.addTarget(self, action: #selector(self.addToTable), for: .touchUpInside)
         popTartButton.setImage(UIImage(named: "pop_tarts"), for: [])
+        
+        let popsicleButton: UIButton = UIButton()
+        popsicleButton.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
+        popsicleButton.widthAnchor.constraint(equalToConstant: self.view.frame.size.width/5.0).isActive = true
+        popsicleButton.tag = 4
+        popsicleButton.addTarget(self, action: #selector(self.addToTable), for: .touchUpInside)
+        popsicleButton.setImage(UIImage(named: "popsicle"), for: [])
         
         let ramenButton: UIButton = UIButton()
         ramenButton.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
@@ -81,11 +90,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         stackView.isHidden = true
         stackView.translatesAutoresizingMaskIntoConstraints = false;
         stackView.spacing = 0.0
+    
         
-
-        //snacksLabel.centerXAnchor.constraintEqualToAnchor(naveBarView.centerXAnchor).isActive = true
-        //labelHeight = snacksLabel.centerYAnchor.constraintEqualToAnchor(naveBarView.centerYAnchor, constant: 0.0)
-        //labelHeight.active = true
+        navBarLabel.text = "SNACKS"
+        navBarLabel.textAlignment = .center
+        navBarLabel.isEnabled = true
+        navBarLabel.isHidden = false
+        navBarLabel.alpha = 1.0
+        navBarLabel.translatesAutoresizingMaskIntoConstraints = false;
+        stackView.addSubview(navBarLabel)
+     
         
         stackView.addArrangedSubview(oreoButton)
         stackView.addArrangedSubview(pizzaPocketButton)
@@ -94,8 +108,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         stackView.addArrangedSubview(ramenButton)
         
         self.naveBarView.addSubview(stackView)
+        
+       
         stackView.centerXAnchor.constraint(equalTo: naveBarView.centerXAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: naveBarView.bottomAnchor).isActive = true
+    
+        //set label X coord to the middle of the navbar view
+        //navBarLabel.topAnchor.constraint(equalTo: naveBarView.topAnchor).isActive = true
+        navBarLabel.centerXAnchor.constraint(equalTo: naveBarView.centerXAnchor).isActive = true
+        navBarLabel.centerYAnchor.constraint(equalTo: naveBarView.centerYAnchor).isActive = true
+        
+        //navBarLabel.centerYAnchor.constraint(equalTo: naveBarView.centerYAnchor, constant: 0.0).isActive = true
+//        labelHeight = navBarLabel.centerYAnchor.constraint(equalTo: navBarLabel.centerYAnchor, constant: 0.0)
+//        labelHeight.isActive = true
+//        //navBarLabel.centerYAnchor.constraint(equalTo: stackView.centerXAnchor, constant: 0.0)
+        
     }
     
     func addToTable(sender: UIButton) {
@@ -128,6 +155,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("plus icon pressed")
         
         if self.navBarHeightContraint.constant == 60 {
+            //snacksLabel.isHidden = true
             
             //constraint change animation so the animation goes after and this constant change doesn't
             //need to be placed in the animation block..just the self.view
@@ -147,6 +175,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             //bounce back to position
             self.navBarHeightContraint.constant = 60
+            //snacksLabel.isHidden = false
             UIView.animate(withDuration: 1.0,
                            delay: 0.0,
                            usingSpringWithDamping: 0.3,
@@ -185,11 +214,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             })
         } else {
             
+            
+            
             //            self.plusButton.transform.a = 1.0
             //            self.plusButton.transform.b = 0.0
             //            self.plusButton.transform.c = 0.0
             //            self.plusButton.transform.d = 1.0
-         
+          
             UIView.animate(withDuration: 1.0,
                            delay: 0.0,
                            usingSpringWithDamping: 0.3,
@@ -199,10 +230,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             
                             //need this here because its a transform not a contraint
                             self.plusButton.transform = CGAffineTransform(rotationAngle: 0.0)
+                            
                             //self.plusButton.layoutIfNeeded()
             }, completion: {
                 (value: Bool) in
             })
+            stackView.isHidden = true
         }
     }
     
