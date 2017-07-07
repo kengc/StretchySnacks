@@ -21,6 +21,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet var navBarHeightContraint: NSLayoutConstraint!
     
+        @IBOutlet var navBarLabelContraint: NSLayoutConstraint!
+    
     var stackView: UIStackView = UIStackView()
     var labelHeight : NSLayoutConstraint!
     
@@ -119,12 +121,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //set label X coord to the middle of the navbar view
         //navBarLabel.topAnchor.constraint(equalTo: naveBarView.topAnchor).isActive = true
         navBarLabel.centerXAnchor.constraint(equalTo: naveBarView.centerXAnchor).isActive = true
-        navBarLabel.centerYAnchor.constraint(equalTo: naveBarView.centerYAnchor).isActive = true
         
-        //navBarLabel.centerYAnchor.constraint(equalTo: naveBarView.centerYAnchor, constant: 0.0).isActive = true
-//        labelHeight = navBarLabel.centerYAnchor.constraint(equalTo: navBarLabel.centerYAnchor, constant: 0.0)
-//        labelHeight.isActive = true
-//        //navBarLabel.centerYAnchor.constraint(equalTo: stackView.centerXAnchor, constant: 0.0)
+        //creates a new contraint when we assign it then we have to activate it
+        navBarLabelContraint = navBarLabel.centerYAnchor.constraint(equalTo: naveBarView.centerYAnchor)
+        navBarLabelContraint.isActive = true
+        
+        
         
     }
     
@@ -166,7 +168,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             stackView.isHidden = false
             
             navBarLabel.text = "add a SNACK"
-            //navBarLabel.centerYAnchor.constraint(equalTo: naveBarView.centerYAnchor, constant: 200.0).isActive = true
+            
+            navBarLabelContraint.constant = -40  //offset
             
             UIView.animate(withDuration: 1.0,
                            delay: 0.0,
@@ -181,6 +184,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             //bounce back to position
             self.navBarHeightContraint.constant = 60
+             navBarLabelContraint.constant = 0
             //snacksLabel.isHidden = false
             UIView.animate(withDuration: 1.0,
                            delay: 0.0,
@@ -200,7 +204,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print(self.plusButton.transform)
         
         if(self.plusButton.transform.a == 1.0){
-  
+           
             //self.plusButton.transform = CGAffineTransform(rotationAngle: 2.0)
                 
             //print(self.plusButton.transform)
